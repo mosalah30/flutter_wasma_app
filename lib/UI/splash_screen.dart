@@ -13,7 +13,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     _startSplashScreenTimer();
     super.initState();
-
   }
 
   @override
