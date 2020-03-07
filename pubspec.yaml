@@ -14,7 +14,7 @@ description: An Assignment Project
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -30,7 +30,8 @@ dev_dependencies:
   shared_preferences:
   google_maps_flutter:
   http:
-  dio:
+
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
