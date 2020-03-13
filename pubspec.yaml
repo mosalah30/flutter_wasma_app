@@ -30,6 +30,9 @@ dev_dependencies:
   shared_preferences:
   google_maps_flutter:
   http:
+  easy_localization:
+  flutter_localizations:
+    sdk: flutter
 
 
 # For information on the generic Dart part of this file, see the
@@ -44,7 +47,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
+  assets:
+    - assets/langauge/en.json
+    - assets/langauge/ar.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

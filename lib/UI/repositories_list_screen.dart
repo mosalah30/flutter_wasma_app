@@ -14,7 +14,6 @@ class RepositoriesListScreen extends StatefulWidget {
 }
 
 class _RepositoriesListScreenState extends State<RepositoriesListScreen> {
-
   var _key = GlobalKey();
   List<ExampleRepositoryModel> _repositoryList = List();
   static int _pageNum = 1;
@@ -52,13 +51,15 @@ class _RepositoriesListScreenState extends State<RepositoriesListScreen> {
       _isPageLoading = true;
       _pageNum++;
       _getRepositoriesListResponsePerPage(_pageNum).then((value) {
-        if(value.isNotEmpty){
+        if (value != null && value.isNotEmpty) {
           _listController.add(value);
-        }else{
+          _isPageLoading = false;
+        } else {
+          _isPageLoading = true;
           _pageNum--;
         }
       });
-      print(_pageNum.toString()+' page');
+      print(_pageNum.toString() + ' page');
       print(length.toString());
     }
   }
@@ -73,11 +74,8 @@ class _RepositoriesListScreenState extends State<RepositoriesListScreen> {
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 snapshot.data.forEach((element) {
-                  if(element!=null){
+                  if (element != null) {
                     _repositoryList.add(element);
-                    _isPageLoading= false ;
-                  }else{
-                   _isPageLoading= true ;
                   }
                 });
               }
@@ -90,6 +88,11 @@ class _RepositoriesListScreenState extends State<RepositoriesListScreen> {
                           itemBuilder: (c, index) {
                             _setPagination(
                                 index: index, length: _repositoryList.length);
+                            if (_isPageLoading == true) {
+                              return Container(
+                                  height: 2, child: LinearProgressIndicator());
+                            }
+
                             return Container(
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -181,9 +184,6 @@ class _RepositoriesListScreenState extends State<RepositoriesListScreen> {
                             );
                           }),
                     ),
-                    _isPageLoading == true
-                        ? LinearProgressIndicator()
-                        : SizedBox()
                   ],
                 );
               } else {
@@ -195,5 +195,4 @@ class _RepositoriesListScreenState extends State<RepositoriesListScreen> {
           ),
         ));
   }
-
 }
